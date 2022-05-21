@@ -12,7 +12,7 @@ namespace Cashsystem.Math
         private readonly Int64 denominator;
 
         #region constructors
-        public Fraction(Int64 numerator, Int64 denominator)
+        private Fraction(Int64 numerator, Int64 denominator = 1)
         {
             this.numerator = numerator;
             this.denominator = denominator;
@@ -41,7 +41,16 @@ namespace Cashsystem.Math
                     denominator = Int64.Parse(den);
                 }
                 else
-                    throw new Exception("Unparseable 'fraction' string");
+                {
+                    Int64 num;
+                    if (Int64.TryParse(fraction, out num))
+                    {
+                        numerator = num;
+                        denominator = 1;
+                    }
+                    else
+                        throw new Exception("Unparseable 'fraction' string");
+                }
             }
             else
                 throw new Exception("Empty 'fraction' string");
@@ -54,49 +63,74 @@ namespace Cashsystem.Math
         #region output
         public override string ToString()
         {
-            return numerator.ToString() + "/" + denominator.ToString();
+            if (denominator != 1)
+                return numerator.ToString() + "/" + denominator.ToString();
+            else
+                return numerator.ToString();
         }
         public string ToStringLaTeX()
         {
-            return "\frac{" + numerator.ToString() + "}{" + denominator.ToString() + "}";
+            if (denominator != 1)
+                return "\frac{" + numerator.ToString() + "}{" + denominator.ToString() + "}";
+            else
+                return numerator.ToString();
         }
         #endregion
 
         #region arithmetic operations
-        public Fraction add(Fraction fraction)
-        {
-            Int64 num, den;
-            num = this.numerator * fraction.denominator +
-                  fraction.numerator * this.denominator;
-            den = this.denominator * fraction.denominator;
-            return new Fraction(num, den);
-        }
         public static Fraction operator +(Fraction fraction1, Fraction fraction2)
         {
-            return fraction1.add(fraction2);
-        }
-        public Fraction sub(Fraction fraction)
-        {
             Int64 num, den;
-            num = this.numerator * fraction.denominator -
-                  fraction.numerator * this.denominator;
-            den = this.denominator * fraction.denominator;
-            return new Fraction(num, den);
+            num = fraction1.numerator * fraction2.denominator +
+                  fraction2.numerator * fraction1.denominator;
+            den = fraction1.denominator * fraction2.denominator;
+            return new Fraction(num, den).Shorten();
+        }
+        public static Fraction operator -(Fraction fraction)
+        {
+            return new Fraction(-fraction.numerator, fraction.denominator).Shorten();
         }
         public static Fraction operator -(Fraction fraction1, Fraction fraction2)
         {
-            return fraction1.sub(fraction2);
-        }
-        public Fraction mul(Fraction fraction)
-        {
-            Int64 num, den;
-            num = this.numerator * fraction.numerator;
-            den = this.numerator * fraction.denominator;
-            return new Fraction(num, den);
+            return ( fraction1 + (-fraction2) ).Shorten();
         }
         public static Fraction operator *(Fraction fraction1, Fraction fraction2)
         {
-            return fraction1.mul(fraction2);
+            Int64 num, den;
+            num = fraction1.numerator * fraction2.numerator;
+            den = fraction2.numerator * fraction2.denominator;
+            return new Fraction(num, den).Shorten();
+        }
+        public static Fraction operator /(Fraction fraction1, Fraction fraction2)
+        {
+            return ( fraction1 * fraction2.Flip() ).Shorten();
+        }
+        public Fraction Flip()
+        {
+            if (numerator != 0)
+                return new Fraction(denominator, numerator).Shorten();
+            else
+                throw new Exception("Denominator equals zero");
+        }
+        public Fraction Shorten()
+        {
+            var num = numerator;
+            var den = denominator;
+            Int64 ggt;
+            if (num == 0) ggt = System.Math.Abs(den);
+            //else if (den == 0) ggt = System.Math.Abs(num);
+            else
+            {
+                do
+                {
+                    var tmp = num % den;
+                    num = den;
+                    den = tmp;
+                }
+                while (den != 0);
+                ggt = System.Math.Abs(num);
+            }
+            return new Fraction(numerator / ggt, denominator / ggt);
         }
         #endregion
     }
