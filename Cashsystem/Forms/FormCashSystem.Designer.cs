@@ -28,10 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // FormCashSystem
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 32F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "FormCashSystem";
+            this.ClientSize = new System.Drawing.Size(1254, 649);
+            this.Name = "FormCashSystem";
+            this.ShowIcon = false;
+            this.Text = "Kassensystem";
+            this.ResumeLayout(false);
+
         }
 
         #endregion
