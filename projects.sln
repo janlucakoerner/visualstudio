@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32421.90
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Delete", "Delete\Delete.csproj", "{3985B222-6CD1-4881-844D-79F57EE093F5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Delete", "Delete\Delete.csproj", "{3985B222-6CD1-4881-844D-79F57EE093F5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cashsystem", "..\..\..\FormsApplications\Cashsystem\Cashsystem.csproj", "{319CBBAC-6E2A-496E-B596-82250A198380}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cashsystem", "Cashsystem\Cashsystem.csproj", "{A291B8B0-54B8-40F6-84F7-CD773D702AB6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{3985B222-6CD1-4881-844D-79F57EE093F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3985B222-6CD1-4881-844D-79F57EE093F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3985B222-6CD1-4881-844D-79F57EE093F5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{319CBBAC-6E2A-496E-B596-82250A198380}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{319CBBAC-6E2A-496E-B596-82250A198380}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{319CBBAC-6E2A-496E-B596-82250A198380}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{319CBBAC-6E2A-496E-B596-82250A198380}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A291B8B0-54B8-40F6-84F7-CD773D702AB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A291B8B0-54B8-40F6-84F7-CD773D702AB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A291B8B0-54B8-40F6-84F7-CD773D702AB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A291B8B0-54B8-40F6-84F7-CD773D702AB6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
